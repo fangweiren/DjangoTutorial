@@ -35,7 +35,6 @@ class Post(models.Model):
 	
 	class Meta:
 		ordering = ('-create_time',)
-		#search_fields=['title', 'body']
 		verbose_name = '博客'
 		verbose_name_plural = '博客'
 	

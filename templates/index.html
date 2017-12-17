@@ -37,14 +37,14 @@
 	  {% endif %}
 	  
 	  {% for post in post_list %}
-      <h3><a href="{% url 'post-url' post.id %}" target="_blank">{{ post.title }}</a></h3>
+      <h3><a href="" target="_blank">{{ post.title }}</a></h3>
       <ul>
         <p style="font-size:16px">{{ post.body | safe | truncatechars:200 }}</p>
-        <a title="{{ post.title }}" href="{% url 'post-url' post.id %}" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+        <a title="{{ post.title }}" href="" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
       </ul>
       <p class="dateview"><span>{{ post.create_time }}</span>
 		<span>作者：{{ post.author.username }}</span>
-		<span>分类：[<a href="{% url 'category-url' post.category.id %}">{{ post.category }}</a>]</span>
+		<span>分类：[<a href="">{{ post.category }}</a>]</span>
 		<span class="iconfont icon-yuedu" style="font-size:12px;"> {{ post.read_amount }}</span></p>
 	  {% empty %}
 	  <h3>暂无文章！</h3>
