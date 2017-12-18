@@ -10,32 +10,11 @@
   <div class="container">
     <div class="bloglist f_l" style="font-size: 14px;">
 	
-	  <h3><a href="/jstt/bj/2017-07-13/784.html">【心路历程】请不要在设计这条路上徘徊啦</a></h3>
-      <figure><img src="images/img_1.jpg" alt="【心路历程】请不要在设计这条路上徘徊啦"></figure>
-      <ul>
-        <p> 我整理了一下网友给我的来信，如果你还在踌躇不前，不妨来看看，到底要不要坚持下去！我也欢迎大家给我来信，希望能帮到更多人。</p>
-        <a title="【心路历程】请不要在设计这条路上徘徊啦" href="/jstt/bj/2017-07-13/784.html" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
-      </ul>
-      <p class="dateview"><span>2017-07-13</span><span>作者：</span><span>个人博客：[<a href="/jstt/bj/">心得笔记</a>]</span></p>
-      <h3><a href="/jstt/bj/2015-01-09/740.html">【匆匆那些年】总结个人博客经历的这四年…</a></h3>
-      <figure><img src="images/img_2.jpg" alt="【匆匆那些年】总结个人博客经历的这四年…"></figure>
-      <ul>
-        <p>博客从最初的域名购买，到上线已经有四年的时间了，这四年的时间，有笑过，有怨过，有悔过，有执着过，也有放弃过…但最后还是坚持了下来，时间如此匆匆，等再回过头已来不及去弥补</p>
-        <a title="【匆匆那些年】总结个人博客经历的这四年…" href="/jstt/bj/2015-01-09/740.html" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
-      </ul>
-      <p class="dateview"><span>2015-01-09</span><span>作者：杨青</span><span>个人博客：[<a href="/jstt/bj/">心得笔记</a>]</span></p>
-      <h3><a href="/jstt/bj/2014-11-06/732.html">分享我的个人博客访问量如何做到IP从10到600的(图文)</a></h3>
-      <figure><img src="images/img_3.jpg" alt="分享我的个人博客访问量如何做到IP从10到600的(图文)"></figure>
-      <ul>
-        <p>我的个人博客总共展示了三个版本，界面也经历了由“简单”到“复杂”再到“简单”，颜色从“色泽单一”到“五彩斑斓”再到“局部点缀”的过程。原来一年一个版本！而每次改版的契机都是被百度惩罚！界面不要频繁更换！好好检查代码，有没有冗余、结构有没有不合理的地方。</p>
-        <a title="分享我的个人博客访问量如何做到IP从10到600的(图文)" href="/jstt/bj/2014-11-06/732.html" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
-      </ul>
-      <p class="dateview"><span>2014-11-06</span><span>作者：杨青</span><span>个人博客：[<a href="/jstt/bj/">心得笔记</a>]</span></p>
 	<!-- 文章列表
 	  {% if error_msg %}
          <p>{{ error_msg }}</p>
 	  {% endif %}
-	  
+	-->  
 	  {% for post in post_list %}
       <h3><a href="" target="_blank">{{ post.title }}</a></h3>
       <ul>
@@ -45,11 +24,11 @@
       <p class="dateview"><span>{{ post.create_time }}</span>
 		<span>作者：{{ post.author.username }}</span>
 		<span>分类：[<a href="">{{ post.category }}</a>]</span>
-		<span class="iconfont icon-yuedu" style="font-size:12px;"> {{ post.read_amount }}</span></p>
+		<span>阅读：{{ post.read_amount }}</span>
+	  </p>
 	  {% empty %}
 	  <h3>暂无文章！</h3>
       {% endfor %}
-	-->
 	
 	  <!-- 分页
 	  {% if count > 15 %}

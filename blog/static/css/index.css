@@ -48,9 +48,9 @@
 	width: 140px;
 }
 .bloglist ul {
-	float: left;
-	width: 70%;
-	margin: 10px 0px 0 15px;
+	#float: left;
+	#width: 70%;
+	margin: 10px 0px 0px 0px;
 	line-height: 20px;
 }
 .dateview {
