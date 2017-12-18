@@ -189,10 +189,6 @@ a.readmore {
 .rank li a {
 	color: #333;
 }
-.rank li:first-child a {
-	color: #f00;
-	display: block;
-}
 .ph {
 	overflow: hidden
 }

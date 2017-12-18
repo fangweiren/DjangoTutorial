@@ -5,41 +5,41 @@
   
   <div class="ph">
     <h3 class="tit">分类</h3>
-	  {% get_categories as category_list %}
+	{% get_categories as category_list %}
     <ul class="rank" >
-	  {% for category in category_list %}
-		<li>
-		  <a href="#">&emsp;{{ category.name }}<span></span></a>
-		</li>
-	  {% empty %}
-		<h3>暂无分类！</h3>
-	  {% endfor %}
+	{% for category in category_list %}
+	  <li>
+		<a href="{% url 'category-url' category.id %}">&emsp;{{ category.name }}</a>
+	  </li>
+	{% empty %}
+	  <h3>暂无分类！</h3>
+	{% endfor %}
     </ul>
   </div>
   
   <div class="ph">
-      <h3 class="tit">归档</h3>
-	  {% archives as date_list %}
-	  <ul class="rank">
-	  {% for date in date_list %}
-		<li>
-		  <a href="#">&emsp;{{ date.year }} 年 {{ date.month }} 月</a>
-		</li>
-	  {% empty %}
-		<h3>暂无归档！</h3>
-	  {% endfor %}
-      </ul>
-    </div>
+    <h3 class="tit">归档</h3>
+	{% archives as date_list %}
+	<ul class="rank">
+	{% for date in date_list %}
+	  <li>
+		<a href="{% url 'archives-url' date.year date.month %}">&emsp;{{ date.year }} 年 {{ date.month }} 月</a>
+	  </li>
+	{% empty %}
+	  <h3>暂无归档！</h3>
+	{% endfor %}
+    </ul>
+  </div>
   
   <div class="ph">
     <h3 class="tit">阅读排行</h3>
-	  {% get_reading_posts as reading_post_list %}
+	{% get_reading_posts as reading_post_list %}
     <ul class="rank">
-	  {% for post in reading_post_list %}
-        <li><a href="{% url 'post_detail-url' post.id %}" title={{ post.title }}>&emsp;{{ post.title }}</a></li>
-	  {% empty %}
-	    <h3>暂无文章！</h3>
-	  {% endfor %}
+	{% for post in reading_post_list %}
+      <li><a href="{% url 'post_detail-url' post.id %}" title={{ post.title }}>&emsp;{{ post.title }}</a></li>
+	{% empty %}
+	  <h3>暂无文章！</h3>
+	{% endfor %}
     </ul>
   </div>
   

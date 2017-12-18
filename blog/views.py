@@ -1,7 +1,7 @@
 from markdown import markdown
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Post
+from .models import Post, Category
 
 # Create your views here.
 def index(request):
@@ -14,3 +14,14 @@ def post_detail(request, post_id):
 	# 记得在顶部引入 markdown 模块
 	post.body = markdown(post.body, ['extra', 'codehilite'])
 	return render(request, 'detail.html', context={'post': post})
+	
+def archives(request, year, month):
+	post_list = Post.objects.filter(create_time__year=year,
+									create_time__month=month).order_by('-create_time')
+	return render(request, 'index.html', context={'post_list': post_list})
+	
+def category(request, category_id):
+	# 记得在开始部分导入 Category 类
+	cate = get_object_or_404(Category, id=category_id)
+	post_list = Post.objects.filter(category=cate).order_by('-create_time')
+	return render(request, 'index.html', context={'post_list': post_list})

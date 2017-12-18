@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from blog.views import index, post_detail
+from blog.views import index, post_detail, archives, category
 
 urlpatterns = [
 	url(r'^$', index, name='index-url'),
 	url(r'^post/(\d+)/$', post_detail, name='post_detail-url'),
+	url(r'^archives/(?P<year>[0-9]{4})/(?P<month>[0-9]{1,2})/$', archives, name='archives-url'),
+	url(r'^category/(?P<category_id>[0-9]+)/$', category, name='category-url'),
     url(r'^admin/', admin.site.urls),
 ]
