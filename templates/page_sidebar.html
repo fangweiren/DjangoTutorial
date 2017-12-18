@@ -1,40 +1,47 @@
+{% load staticfiles %}
+{% load blog_tags %}
+
 <div class="r_box f_r">
-  <div class="tit01">
-    <h3 class="tit">关注我</h3>
-    <div class="gzwm">
-      <ul>
-        <li><a class="email" href="#" target="_blank">我的电话</a></li>
-        <li><a class="qq" href="#mailto:admin@admin.com" target="_blank">我的邮箱</a></li>
-        <li><a class="tel" href="#" target="_blank">我的QQ</a></li>
-        <li><a class="prize" href="#">个人奖项</a></li>
-      </ul>
-    </div>
-  </div>
-  <!--tit01 end-->
-      
-  <div class="tuwen">
-    <h3 class="tit">图文推荐</h3>
-    <ul>
-      <li><a href="/"><img src="images/01.jpg"><b>住在手机里的朋友</b></a>
-        <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
-      </li>
-      <li><a href="/"><img src="images/02.jpg"><b>教你怎样用欠费手机拨打电话</b></a>
-        <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
-      </li>
-      <li><a href="/" title="手机的16个惊人小秘密，据说99.999%的人都不知"><img src="images/03.jpg"><b>手机的16个惊人小秘密，据说...</b></a>
-        <p><span class="tulanmu"><a href="/">手机配件</a></span><span class="tutime">2015-02-15</span></p>
-      </li>
+  
+  <div class="ph">
+    <h3 class="tit">分类</h3>
+	  {% get_categories as category_list %}
+    <ul class="rank" >
+	  {% for category in category_list %}
+		<li>
+		  <a href="#">&emsp;{{ category.name }}<span></span></a>
+		</li>
+	  {% empty %}
+		<h3>暂无分类！</h3>
+	  {% endfor %}
     </ul>
   </div>
   
   <div class="ph">
-    <h3 class="tit">点击排行</h3>
+      <h3 class="tit">归档</h3>
+	  {% archives as date_list %}
+	  <ul class="rank">
+	  {% for date in date_list %}
+		<li>
+		  <a href="#">&emsp;{{ date.year }} 年 {{ date.month }} 月</a>
+		</li>
+	  {% empty %}
+		<h3>暂无归档！</h3>
+	  {% endfor %}
+      </ul>
+    </div>
+  
+  <div class="ph">
+    <h3 class="tit">阅读排行</h3>
+	  {% get_reading_posts as reading_post_list %}
     <ul class="rank">
-      <li><a href="/jstt/bj/2017-07-13/784.html" title="【心路历程】请不要在设计这条路上徘徊啦" target="_blank">【心路历程】请不要在设计这条路上徘徊啦</a></li>
-      <li><a href="/news/s/2016-05-20/751.html" title="IP要突破2000+了" target="_blank">IP要突破2000+了</a></li>
-      <li><a href="/jstt/web/2015-07-03/749.html" title="帝国cms首页、自定义页面如何实现分页" target="_blank">帝国cms首页、自定义页面如何实现分页</a></li>
-      <li><a href="/jstt/web/2015-02-25/745.html" title="【已评选】给我模板PSD源文件，我给你设计HTML！" target="_blank">【已评选】给我模板PSD源文件，我给你设计HTML！</a></li>
+	  {% for post in reading_post_list %}
+        <li><a href="{% url 'post_detail-url' post.id %}" title={{ post.title }}>&emsp;{{ post.title }}</a></li>
+	  {% empty %}
+	    <h3>暂无文章！</h3>
+	  {% endfor %}
     </ul>
   </div>
-  <div class="ad"> <img src="images/03.jpg"> </div>
+  
+  <div class="ad"> <img src="{% static 'images/03.jpg' %}"></div>
 </div>

@@ -183,7 +183,8 @@ a.readmore {
 	background: url(../images/libg.jpg) no-repeat left center;
 }
 .rank {
-	margin: 10px 0
+	margin: 10px 0;
+	font-size: 14px;
 }
 .rank li a {
 	color: #333;
