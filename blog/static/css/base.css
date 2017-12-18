@@ -6,7 +6,7 @@
 }
 body {
 	font: 12px "ËÎÌו", Arial, Helvetica, sans-serif;
-	color: #666666;
+	#color: #666666;
 	background: url(../images/bg.jpg) repeat
 }
 img {
@@ -16,10 +16,12 @@ img {
 ul, ol, li {
 	list-style: none;
 }
+/*
 h1, h2, h3, h4, h5, h6 {
 	font-size: 100%;
 	font-weight: normal;
 }
+*/
 a {
 	outline: none;
 }

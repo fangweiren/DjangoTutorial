@@ -1,7 +1,7 @@
 @charset "gb2312";
 .con_content {
 	overflow: hidden;
-	width: 958px;
+	#width: 958px;
 	margin: auto;
 	border: #CCC 1px solid
 }
@@ -233,8 +233,9 @@ a.readmore {
 	margin: 30px auto
 }
 .dttext {
+	width: 100%;
 	font-size: 14px;
-	border-bottom: #838484 1px solid;
+	#border-bottom: #838484 1px solid;
 }
 .xwpic {
 	width: 28%;
@@ -259,13 +260,13 @@ a.readmore {
 	position: relative;
 	clear: both;
 	list-style: none;
-	margin-bottom: 30px;
+	#margin-bottom: 30px;
 	overflow: hidden
 }
 .dttext span {
 	text-align: right;
-	float: right;
-	color: #999
+	#float: right;
+	#color: #999
 }
 .dttext h2 {
 	font-size: 18px;

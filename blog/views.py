@@ -1,3 +1,4 @@
+from markdown import markdown
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Post
@@ -10,4 +11,6 @@ def index(request):
 	
 def post_detail(request, post_id):
 	post = get_object_or_404(Post, id=post_id)
+	# 记得在顶部引入 markdown 模块
+	post.body = markdown(post.body, ['extra', 'codehilite'])
 	return render(request, 'detail.html', context={'post': post})

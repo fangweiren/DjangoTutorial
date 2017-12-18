@@ -1,0 +1,4 @@
+Django==1.11.7
+Markdown==2.6.10
+psycopg2==2.7.3.2
+pytz==2017.3
