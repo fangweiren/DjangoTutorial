@@ -16,10 +16,10 @@
 	  {% endif %}
 	-->  
 	  {% for post in post_list %}
-      <h3><a href="" target="_blank">{{ post.title }}</a></h3>
+      <h3><a href="{% url 'post_detail-url' post.id %}" target="_blank">{{ post.title }}</a></h3>
       <ul>
         <p style="font-size:16px">{{ post.body | safe | truncatechars:200 }}</p>
-        <a title="{{ post.title }}" href="" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+        <a title="{{ post.title }}" href="{% url 'post_detail-url' post.id %}" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
       </ul>
       <p class="dateview"><span>{{ post.create_time }}</span>
 		<span>作者：{{ post.author.username }}</span>
