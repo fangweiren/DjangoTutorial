@@ -9,7 +9,9 @@
     <ul class="rank" >
 	{% for category in category_list %}
 	  <li>
-		<a href="{% url 'category-url' category.id %}">&emsp;{{ category.name }}</a>
+		<a href="{% url 'category-url' category.id %}">&emsp;{{ category.name }}
+		  <span>({{ category.num_posts }})</span>
+		</a>
 	  </li>
 	{% empty %}
 	  <h3>暂无分类！</h3>
@@ -23,7 +25,9 @@
 	<ul class="rank">
 	{% for date in date_list %}
 	  <li>
-		<a href="{% url 'archives-url' date.year date.month %}">&emsp;{{ date.year }} 年 {{ date.month }} 月</a>
+		<a href="{% url 'archives-url' date.year date.month %}">
+		&emsp;{{ date | date:"Y 年 m 月" }} ({{ date | get_archives_num }})
+		</a>
 	  </li>
 	{% empty %}
 	  <h3>暂无归档！</h3>

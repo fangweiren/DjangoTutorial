@@ -180,7 +180,7 @@ a.readmore {
 	padding-left: 5px;
 	overflow: hidden;
 	padding-left: 15px;
-	background: url(../images/libg.jpg) no-repeat left center;
+	#background: url(../images/libg.jpg) no-repeat left center;
 }
 .rank {
 	margin: 10px 0;
