@@ -15,6 +15,9 @@
           <div class="dttext f_l">
             <ul>
               <h2>{{ post.title }}</h2>
+			  {{ post.create_time }} | 分类：<a href="{% url 'category-url' post.category.id %}">{{ post.category }}</a> | 标签：{% for tag in post.tags.all %} {{ tag.name }} {% endfor %}
+			  <br/>
+			  <br/>
               <p>{{ post.body | safe | linebreaksbr }}</p>
             </ul>
           </div>

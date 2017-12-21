@@ -37,6 +37,10 @@ class Post(models.Model):
 		ordering = ('-create_time',)
 		verbose_name = '博客'
 		verbose_name_plural = '博客'
+		
+	def yueduliang(self):
+		self.read_amount += 1
+		self.save(update_fields=['read_amount'])
 	
 	def __str__(self):
 		return self.title
