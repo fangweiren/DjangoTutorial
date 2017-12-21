@@ -31,3 +31,9 @@ def tag(request, tag_id):
 	tag = get_object_or_404(Tag, id=tag_id)
 	post_list = Post.objects.filter(tags=tag)
 	return render(request, 'index.html', context={'post_list': post_list})
+	
+def get_rss(request, post_id):
+	post = get_object_or_404(Post, id=post_id)
+	text = '<strong><h2>[%s] %s</h2></strong>' % (post.category, post.title)
+	text += '%s' % markdown(post.body, ['extra', 'codehilite'])
+	return HttpResponse(text) 

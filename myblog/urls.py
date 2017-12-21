@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from blog.views import index, post_detail, archives, category, tag
+from blog.views import index, post_detail, archives, category, tag, get_rss
+from blog.feeds import AllPostsRssFeed
 
 urlpatterns = [
 	url(r'^$', index, name='index-url'),
@@ -23,5 +24,7 @@ urlpatterns = [
 	url(r'^archives/(?P<year>[0-9]{4})/(?P<month>[0-9]{1,2})/$', archives, name='archives-url'),
 	url(r'^category/(?P<category_id>[0-9]+)/$', category, name='category-url'),
 	url(r'^tag/(?P<tag_id>[0-9]+)/$', tag, name='tag-url'),
+	url(r'^all/rss/$', AllPostsRssFeed(), name='rss-url'),
+	url(r'^all/rss/(\d+)/', get_rss),
     url(r'^admin/', admin.site.urls),
 ]
