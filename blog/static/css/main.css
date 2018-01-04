@@ -137,19 +137,29 @@
 /* ∑÷“≥ */
 .pagelist {
 	text-align: center;
-	color: #666;
+	font-size: 20px;
+	font-family: Œ¢»Ì—≈∫⁄;
+	background-color: #d0d0d0;
 	width: 100%;
-	clear: both;
 	margin: 10px 0;
-	display: block
+	height: 40px;
+	line-height: 40px;
 }
-.pagelist a {
-	color: #666;
-	margin: 0 2px
+.pagelist li {
+	display: inline;
+	#border: 1px solid blue;
+	margin: -3px;
+}
+.pagelist li a {
+	padding: 0px 10px;
 }
 .pagelist a:hover {
 	color: #f00;
 	text-decoration: underline
+}
+.current {
+	background-color: #2894FF;
+	padding: 0px 10px;
 }
 .blogs {
 	padding: 20px 0;

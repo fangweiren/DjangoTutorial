@@ -1,0 +1,27 @@
+<div class="pagelist">
+    {% if post_list.has_previous %}
+        <li><a href="?page={{ post_list.previous_page_number }}"><<</a></li>
+    {% endif %}
+    <!-- 如果 first 为 True ，显示第一页和省略号 -->
+    {% if first %}
+        <li><a href="?page=1">1</a></li>
+        <li><a href="#">···</a></li>
+    {% endif %}
+
+    {% for p in page_range %}
+        {% ifequal p post_list.number %}
+            <li class="current">{{ p }}</li>
+        {% else %}
+            <li><a href="?page={{ p }}" title="第{{ p }}页">{{ p }}</a></li>
+        {% endifequal %}
+    {% endfor %}
+    <!-- 如果 last 为 True ，显示省略号和最后一页 -->
+    {% if last %}
+        <li><a href="#">···</a></li>
+        <li><a href="?page={{ post_list.paginator.num_pages }}">{{ post_list.paginator.num_pages }}</a></li>
+    {% endif %}
+
+    {% if post_list.has_next %}
+        <li><a href="?page={{ post_list.next_page_number }}">>></a></li>
+    {% endif %}
+</div>

@@ -2,12 +2,55 @@ from markdown import markdown
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Post, Category, Tag
+from django.core.paginator import Paginator, EmptyPage, InvalidPage, PageNotAnInteger
 
 # Create your views here.
 def index(request):
-	post_list = Post.objects.all().order_by('-create_time')
+    post_list = Post.objects.all().order_by('-create_time')
+    after_range_num = 3        # 当前页前显示3页
+    before_range_num = 3       # 当前页后显示3页
+    num_of_displaypages = 11   # 显示页数
+    first = False              # 显示左边省略号
+    last = False               # 显示右边省略号
+
+    try:
+        page = int(request.GET.get("page", 1))
+        if page < 1:
+            page = 1
+    except ValueError:
+        page = 1
+    paginator = Paginator(post_list, 1)
+    count = paginator.count
+    try:
+        post_list = paginator.page(page)
+    except(EmptyPage,InvalidPage,PageNotAnInteger):
+        post_list = paginator.page(paginator.num_pages)
+    # 总页数小于等于显示页数时，则将总页数全部显示
+    if paginator.num_pages <= num_of_displaypages:
+        page_range = range(1, paginator.num_pages + 1)
+    # 第一种情况
+    elif post_list.number <= num_of_displaypages - after_range_num - 2:
+        last = True
+        page_range = range(1, post_list.number + after_range_num + 1)
+    # 第二种情况
+    elif num_of_displaypages - after_range_num - 2 < post_list.number < paginator.num_pages - after_range_num - 2:
+        first = True
+        last = True
+        page_range = range(post_list.number - before_range_num, post_list.number + after_range_num + 1)
+    # 第三种情况
+    else:
+        first = True
+        page_range = range(post_list.number - before_range_num, paginator.num_pages + 1)
+        #page_range = range(1,10)
+    context = {'post_list': post_list,
+               'page_range': page_range,
+               'count': count,
+               'first': first,
+               'last': last
+               }
+
     #return HttpResponse(u"欢迎光临 我的博客!")
-	return render(request, 'index.html', context={'post_list': post_list})
+    return render(request, 'index.html', context=context)
 	
 def post_detail(request, post_id):
 	post = get_object_or_404(Post, id=post_id)
