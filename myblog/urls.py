@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from blog.views import index, post_detail, archives, category, tag, get_rss
 from blog.feeds import AllPostsRssFeed
@@ -24,6 +24,7 @@ urlpatterns = [
 	url(r'^archives/(?P<year>[0-9]{4})/(?P<month>[0-9]{1,2})/$', archives, name='archives-url'),
 	url(r'^category/(?P<category_id>[0-9]+)/$', category, name='category-url'),
 	url(r'^tag/(?P<tag_id>[0-9]+)/$', tag, name='tag-url'),
+	url(r'^search/', include('haystack.urls')),
 	url(r'^all/rss/$', AllPostsRssFeed(), name='rss-url'),
 	url(r'^all/rss/(\d+)/', get_rss),
     url(r'^admin/', admin.site.urls),

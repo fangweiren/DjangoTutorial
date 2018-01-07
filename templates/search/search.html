@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load blog_tags %}
+{% load highlight %}
+<body>
+  {% block title %} Nancy - Search {% endblock %}
+
+  {% block content %}
+  
+  <div class="jztop"></div>
+  <div class="container">
+    <div class="bloglist f_l"> 
+	{% if query %}
+      {% for result in page.object_list %}
+      <h3><a href="{% url 'post_detail-url' result.object.id %}" target="_blank">{% highlight result.object.title with query %}</a></h3>
+      
+      <ul>
+        <p style="font-size:16px">{% highlight result.object.body with query %}</p>
+        <a title="{{ result.object.title }}" href="{% url 'post_detail-url' result.object.id %}" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+      </ul>
+      <p class="dateview"><span>{{ result.object.create_time }}</span><span>作者：{{ result.object.author.username }}</span><span>分类：[<a href="{% url 'category-url' result.object.category.id %}">{{ result.object.category }}</a>]</span></p>
+	  {% empty %}
+	  <h3>没有搜索到你想要的结果！</h3>
+      {% endfor %}
+	  
+	  {% if page.has_previous or page.has_next %}
+        <div class="pagelist" style="font-size:16px; font-family:微软雅黑; color:#000000;">
+          {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}上一页{% if page.has_previous %}</a>{% endif %}
+                |
+				<span><span style="color:red;">第 {{ page.number }} 页</span> | 共 {{ page.paginator.num_pages }} 页</span>
+				|
+          {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}下一页{% if page.has_next %}</a>{% endif %}
+        </div>
+      {% endif %}
+
+	{% else %}
+    <h3>请输入搜索关键词，例如 django</h3>
+    {% endif %}
+    </div>
+	
+	{% include "page_sidebar.html" %}
+	
+  </div>
+  <!-- container代码 结束 -->
+  
+  <div class="jzend"></div>
+  {% endblock %}
+
+</body>

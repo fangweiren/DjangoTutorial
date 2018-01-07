@@ -19,7 +19,7 @@ def index(request):
             page = 1
     except ValueError:
         page = 1
-    paginator = Paginator(post_list, 1)
+    paginator = Paginator(post_list, 10)
     count = paginator.count
     try:
         post_list = paginator.page(page)
@@ -79,4 +79,4 @@ def get_rss(request, post_id):
 	post = get_object_or_404(Post, id=post_id)
 	text = '<strong><h2>[%s] %s</h2></strong>' % (post.category, post.title)
 	text += '%s' % markdown(post.body, ['extra', 'codehilite'])
-	return HttpResponse(text) 
+	return HttpResponse(text)
