@@ -1,0 +1,9 @@
+.aligned ul {
+    margin-left: 0px;
+}
+.aligned label {
+    float: none;
+}
+textarea {
+    width: 100%;
+}

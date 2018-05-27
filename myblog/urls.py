@@ -28,4 +28,5 @@ urlpatterns = [
 	url(r'^all/rss/$', AllPostsRssFeed(), name='rss-url'),
 	url(r'^all/rss/(\d+)/', get_rss),
     url(r'^admin/', admin.site.urls),
+    url(r'^markdownx/', include('markdownx.urls')),
 ]

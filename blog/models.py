@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from markdownx.models import MarkdownxField
 from django.db import models
 from django.utils import timezone
 
@@ -24,23 +25,24 @@ class Tag(models.Model):
 		return self.name
 
 class Post(models.Model):
-	author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='用户名')
-	title = models.CharField('标题', max_length=100)
-	body = models.TextField('内容')
-	create_time = models.DateTimeField('发布日期', default=timezone.now)
-	update_time = models.DateTimeField('最后修改日期', auto_now=True)
-	read_amount = models.IntegerField('浏览', default=0)
-	category = models.ForeignKey(Category, blank=True, verbose_name='分类')
-	tags = models.ManyToManyField(Tag, blank=True, verbose_name='标签')
-	
-	class Meta:
-		ordering = ('-create_time',)
-		verbose_name = '博客'
-		verbose_name_plural = '博客'
-		
-	def yueduliang(self):
-		self.read_amount += 1
-		self.save(update_fields=['read_amount'])
-	
-	def __str__(self):
-		return self.title
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='用户名')
+    title = models.CharField('标题', max_length=100)
+    # body = models.TextField('内容')
+    body = MarkdownxField('内容')
+    create_time = models.DateTimeField('发布日期', default=timezone.now)
+    update_time = models.DateTimeField('最后修改日期', auto_now=True)
+    read_amount = models.IntegerField('浏览', default=0)
+    category = models.ForeignKey(Category, blank=True, verbose_name='分类')
+    tags = models.ManyToManyField(Tag, blank=True, verbose_name='标签')
+
+    class Meta:
+        ordering = ('-create_time',)
+        verbose_name = '博客'
+        verbose_name_plural = '博客'
+
+    def yueduliang(self):
+        self.read_amount += 1
+        self.save(update_fields=['read_amount'])
+
+    def __str__(self):
+        return self.title
